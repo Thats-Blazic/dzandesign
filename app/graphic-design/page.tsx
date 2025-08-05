@@ -118,16 +118,16 @@ export default function GraphicDesignPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-white text-black">
+    <div className="min-h-screen bg-black text-white">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md border-b border-gray-100 z-50">
+      <nav className="fixed top-0 w-full bg-black/80 backdrop-blur-md border-b border-white/10 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
-            <Link href="/" className="text-3xl font-black text-black tracking-tight">
-              DZAN DESIGN<span className="text-blue-600">.</span>
+            <Link href="/" className="text-3xl font-black text-white tracking-tight">
+              DZAN DESIGN<span className="text-white">.</span>
             </Link>
             <Link href="/">
-              <Button variant="outline" className="flex items-center gap-2">
+              <Button variant="outline" className="flex items-center gap-2 border-white/20 text-black hover:bg-white hover:text-blue-600">
                 <ArrowLeft className="h-4 w-4" />
                 Back to Home
               </Button>
@@ -137,8 +137,35 @@ export default function GraphicDesignPage() {
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-gradient-to-br from-blue-50 to-indigo-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="pt-32 pb-20 bg-black relative overflow-hidden">
+        {/* Animated Background Elements */}
+        <motion.div 
+          className="absolute top-1/4 left-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl"
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.6, 0.3],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        ></motion.div>
+        <motion.div 
+          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl"
+          animate={{
+            scale: [1.2, 1, 1.2],
+            opacity: [0.3, 0.6, 0.3],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 2
+          }}
+        ></motion.div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div 
             className="text-center"
             initial={{ opacity: 0, y: 30 }}
@@ -146,15 +173,15 @@ export default function GraphicDesignPage() {
             transition={{ duration: 0.8 }}
           >
             <motion.div 
-              className="w-24 h-24 mx-auto mb-8 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-3xl flex items-center justify-center"
+              className="w-24 h-24 mx-auto mb-8 bg-gradient-to-br from-white/20 to-white/10 rounded-3xl flex items-center justify-center"
               whileHover={{ scale: 1.1, rotate: 5 }}
             >
               <Eye className="h-12 w-12 text-white" />
             </motion.div>
-            <h1 className="text-5xl sm:text-7xl font-black text-black mb-8">
+            <h1 className="text-5xl sm:text-7xl font-black text-white mb-8">
               Graphic Design
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-12">
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-12">
               We create stunning visual identities that capture the essence of your brand and resonate deeply with your target audience.
             </p>
             <motion.div 
@@ -166,14 +193,14 @@ export default function GraphicDesignPage() {
               {services.map((service, index) => (
                 <motion.div
                   key={index}
-                  className="flex items-center gap-3 bg-white px-6 py-3 rounded-full shadow-lg"
+                  className="flex items-center gap-3 bg-white/10 backdrop-blur-md px-6 py-3 rounded-full shadow-lg border border-white/10"
                   whileHover={{ scale: 1.05 }}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
                 >
-                  <div className="text-blue-600">{service.icon}</div>
-                  <span className="font-semibold text-gray-800">{service.title}</span>
+                  <div className="text-white">{service.icon}</div>
+                  <span className="font-semibold text-white">{service.title}</span>
                 </motion.div>
               ))}
             </motion.div>
@@ -181,61 +208,66 @@ export default function GraphicDesignPage() {
         </div>
       </section>
 
-             {/* Gallery Section */}
-       <section className="py-20 bg-white">
-         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-           <motion.div 
-             className="text-center mb-16"
-             initial={{ opacity: 0, y: 30 }}
-             whileInView={{ opacity: 1, y: 0 }}
-             transition={{ duration: 0.8 }}
-             viewport={{ once: true }}
-           >
-             <h2 className="text-4xl sm:text-6xl font-black text-black mb-8">Our Gallery</h2>
-             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-               Explore our latest graphic design work and creative projects.
-             </p>
-           </motion.div>
+      {/* Gallery Section */}
+      <section className="py-20 bg-black">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-4xl sm:text-6xl font-black text-white mb-8">Our Gallery</h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Explore our latest graphic design work and creative projects.
+            </p>
+          </motion.div>
 
-           <motion.div 
-             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-             initial={{ opacity: 0, y: 50 }}
-             whileInView={{ opacity: 1, y: 0 }}
-             transition={{ duration: 0.8 }}
-             viewport={{ once: true }}
-           >
-             {graphicDesignProjects.map((project, index) => (
-               <motion.div
-                 key={index}
-                 className="group cursor-pointer"
-                 initial={{ opacity: 0, y: 30 }}
-                 whileInView={{ opacity: 1, y: 0 }}
-                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                 viewport={{ once: true }}
-                 whileHover={{ y: -10 }}
-                 onClick={() => window.open(project.image, '_blank')}
-               >
-                 <div className="relative overflow-hidden rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500">
-                   <motion.div 
-                     className="aspect-[4/3]"
-                     whileHover={{ scale: 1.05 }}
-                   >
-                     <img
-                       src={project.image}
-                       alt={project.title}
-                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                     />
-                   </motion.div>
-                 </div>
-               </motion.div>
-             ))}
-           </motion.div>
-         </div>
-       </section>
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            {graphicDesignProjects.map((project, index) => (
+              <motion.div
+                key={index}
+                className="group cursor-pointer"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -10 }}
+                onClick={() => window.open(project.image, '_blank')}
+              >
+                <div className="relative overflow-hidden rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-white/10">
+                  <motion.div 
+                    className="aspect-[4/3]"
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500"></div>
+                  </motion.div>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-blue-600 to-indigo-700 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="py-20 bg-black text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -243,7 +275,7 @@ export default function GraphicDesignPage() {
             viewport={{ once: true }}
           >
             <h2 className="text-4xl sm:text-6xl font-black mb-8">Ready to Transform Your Brand?</h2>
-            <p className="text-xl mb-12 max-w-3xl mx-auto">
+            <p className="text-xl mb-12 max-w-3xl mx-auto text-gray-300">
               Let's create a visual identity that sets your brand apart and drives real results.
             </p>
             <motion.div 
@@ -252,7 +284,7 @@ export default function GraphicDesignPage() {
             >
               <Button
                 size="lg"
-                className="bg-white text-blue-600 hover:bg-gray-100 px-10 py-6 text-lg font-semibold rounded-full"
+                className="bg-white text-black hover:bg-gray-100 px-10 py-6 text-lg font-semibold rounded-full"
               >
                 Start Your Project
               </Button>
@@ -271,11 +303,11 @@ export default function GraphicDesignPage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-black text-white py-16">
+      <footer className="bg-black text-white py-16 border-t border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="text-4xl font-black mb-6">
-              Dzan Design<span className="text-blue-600">.</span>
+              Dzan Design<span className="text-white">.</span>
             </div>
             <p className="text-gray-400 text-lg">© {new Date().getFullYear()} Dzan Design. All rights reserved.</p>
           </div>

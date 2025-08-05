@@ -85,11 +85,11 @@ export default function ProjectDetailsPage() {
 
   if (!project) {
     return (
-      <div className="min-h-screen bg-white text-black flex items-center justify-center">
+      <div className="min-h-screen bg-black text-black flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-4xl font-bold mb-4">Project Not Found</h1>
           <Link href="/websites">
-            <Button>Back to Projects</Button>
+            <Button className="bg-black text-black hover:bg-gray-100">Back to Projects</Button>
           </Link>
         </div>
       </div>
@@ -97,23 +97,23 @@ export default function ProjectDetailsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white text-black">
+    <div className="min-h-screen bg-black text-white">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md border-b border-gray-100 z-50">
+      <nav className="fixed top-0 w-full bg-black/80 backdrop-blur-md border-b border-white/10 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
-            <Link href="/" className="text-3xl font-black text-black tracking-tight">
-              DZAN DESIGN<span className="text-blue-600">.</span>
+            <Link href="/" className="text-3xl font-black text-white tracking-tight">
+              DZAN DESIGN<span className="text-white">.</span>
             </Link>
             <div className="flex gap-4">
               <Link href="/websites">
-                <Button variant="outline" className="flex items-center gap-2">
+                <Button variant="outline" className="flex items-center gap-2 border-white/20 text-black hover:bg-white hover:text-blue-600">
                   <ArrowLeft className="h-4 w-4" />
                   Back to Projects
                 </Button>
               </Link>
               <Link href="/">
-                <Button variant="outline" className="flex items-center gap-2">
+                <Button variant="outline" className="flex items-center gap-2 border-white/20 text-black hover:bg-white hover:text-blue-600">
                   <ArrowLeft className="h-4 w-4" />
                   Home
                 </Button>
@@ -124,8 +124,35 @@ export default function ProjectDetailsPage() {
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-gradient-to-br from-yellow-50 to-orange-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="pt-32 pb-20 bg-black relative overflow-hidden">
+        {/* Animated Background Elements */}
+        <motion.div 
+          className="absolute top-1/4 left-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl"
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.6, 0.3],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        ></motion.div>
+        <motion.div 
+          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl"
+          animate={{
+            scale: [1.2, 1, 1.2],
+            opacity: [0.3, 0.6, 0.3],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 2
+          }}
+        ></motion.div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div 
             className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
             initial={{ opacity: 0, y: 30 }}
@@ -134,7 +161,7 @@ export default function ProjectDetailsPage() {
           >
             <div>
               <motion.span 
-                className="inline-block px-4 py-2 bg-yellow-600/10 text-yellow-600 text-sm font-semibold rounded-full mb-6"
+                className="inline-block px-4 py-2 bg-white/10 text-white text-sm font-semibold rounded-full mb-6"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
@@ -142,7 +169,7 @@ export default function ProjectDetailsPage() {
                 {project.category}
               </motion.span>
               <motion.h1 
-                className="text-5xl sm:text-7xl font-black text-black mb-8"
+                className="text-5xl sm:text-7xl font-black text-white mb-8"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
@@ -150,7 +177,7 @@ export default function ProjectDetailsPage() {
                 {project.title}
               </motion.h1>
               <motion.p 
-                className="text-xl text-gray-600 mb-8 leading-relaxed"
+                className="text-xl text-gray-300 mb-8 leading-relaxed"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
@@ -164,11 +191,11 @@ export default function ProjectDetailsPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
               >
-                <div className="flex items-center gap-2 text-gray-600">
+                <div className="flex items-center gap-2 text-gray-300">
                   <Calendar className="h-5 w-5" />
                   <span>{project.timeline}</span>
                 </div>
-                <div className="flex items-center gap-2 text-gray-600">
+                <div className="flex items-center gap-2 text-gray-300">
                   <Users className="h-5 w-5" />
                   <span>{project.team}</span>
                 </div>
@@ -184,7 +211,7 @@ export default function ProjectDetailsPage() {
               <img
                 src={project.image}
                 alt={project.title}
-                className="w-full rounded-3xl shadow-2xl"
+                className="w-full rounded-3xl shadow-2xl border border-white/10"
               />
             </motion.div>
           </motion.div>
@@ -192,7 +219,7 @@ export default function ProjectDetailsPage() {
       </section>
 
       {/* Project Details */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Main Content */}
@@ -203,34 +230,34 @@ export default function ProjectDetailsPage() {
                 transition={{ duration: 0.8 }}
                 viewport={{ once: true }}
               >
-                <h2 className="text-3xl font-bold text-black mb-8">Project Overview</h2>
-                <p className="text-lg text-gray-600 leading-relaxed mb-8">
+                <h2 className="text-3xl font-bold text-white mb-8">Project Overview</h2>
+                <p className="text-lg text-gray-300 leading-relaxed mb-8">
                   {project.longDescription}
                 </p>
                 
-                <h3 className="text-2xl font-bold text-black mb-6">Key Features</h3>
+                <h3 className="text-2xl font-bold text-white mb-6">Key Features</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
                   {project.features.map((feature, index) => (
                     <motion.div
                       key={index}
-                      className="flex items-center gap-3 p-4 bg-gray-50 rounded-xl"
+                      className="flex items-center gap-3 p-4 bg-white/5 backdrop-blur-md rounded-xl border border-white/10"
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.6, delay: index * 0.1 }}
                       viewport={{ once: true }}
                     >
-                      <div className="w-2 h-2 bg-yellow-600 rounded-full"></div>
-                      <span className="text-gray-700 font-medium">{feature}</span>
+                      <div className="w-2 h-2 bg-white rounded-full"></div>
+                      <span className="text-white font-medium">{feature}</span>
                     </motion.div>
                   ))}
                 </div>
 
-                <h3 className="text-2xl font-bold text-black mb-6">Technologies Used</h3>
+                <h3 className="text-2xl font-bold text-white mb-6">Technologies Used</h3>
                 <div className="flex flex-wrap gap-3 mb-12">
                   {project.technologies.map((tech, index) => (
                     <motion.span
                       key={index}
-                      className="px-4 py-2 bg-yellow-600/10 text-yellow-600 rounded-full text-sm font-semibold"
+                      className="px-4 py-2 bg-white/10 text-white rounded-full text-sm font-semibold"
                       initial={{ opacity: 0, scale: 0.8 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.6, delay: index * 0.1 }}
@@ -252,23 +279,23 @@ export default function ProjectDetailsPage() {
                 transition={{ duration: 0.8 }}
                 viewport={{ once: true }}
               >
-                <Card className="p-8 shadow-xl">
-                  <h3 className="text-2xl font-bold text-black mb-6">Results</h3>
+                <Card className="p-8 shadow-xl bg-white/5 backdrop-blur-md border border-white/10">
+                  <h3 className="text-2xl font-bold text-white mb-6">Results</h3>
                   <div className="space-y-6">
                     {project.results.map((result, index) => (
                       <motion.div
                         key={index}
-                        className="text-center p-6 bg-gradient-to-br from-yellow-50 to-orange-50 rounded-2xl"
+                        className="text-center p-6 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10"
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: index * 0.1 }}
                         viewport={{ once: true }}
                       >
-                        <div className="w-12 h-12 mx-auto mb-4 bg-yellow-600 rounded-xl flex items-center justify-center text-white">
+                        <div className="w-12 h-12 mx-auto mb-4 bg-white/20 rounded-xl flex items-center justify-center text-white">
                           {result.icon}
                         </div>
-                        <div className="text-2xl font-bold text-yellow-600 mb-2">{result.value}</div>
-                        <div className="text-sm text-gray-600">{result.label}</div>
+                        <div className="text-2xl font-bold text-white mb-2">{result.value}</div>
+                        <div className="text-sm text-gray-300">{result.label}</div>
                       </motion.div>
                     ))}
                   </div>
@@ -280,7 +307,7 @@ export default function ProjectDetailsPage() {
       </section>
 
       {/* Gallery */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
+      <section className="py-20 bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             className="text-center mb-16"
@@ -289,8 +316,8 @@ export default function ProjectDetailsPage() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl sm:text-6xl font-black text-black mb-8">Project Gallery</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <h2 className="text-4xl sm:text-6xl font-black text-white mb-8">Project Gallery</h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
               Explore the different pages and features of this project.
             </p>
           </motion.div>
@@ -312,7 +339,7 @@ export default function ProjectDetailsPage() {
                 viewport={{ once: true }}
                 whileHover={{ y: -10 }}
               >
-                <div className="relative overflow-hidden rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500">
+                <div className="relative overflow-hidden rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-white/10">
                   <motion.div 
                     className="aspect-[4/3]"
                     whileHover={{ scale: 1.02 }}
@@ -332,8 +359,12 @@ export default function ProjectDetailsPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-yellow-500 to-orange-600 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="py-20 bg-black text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -341,7 +372,7 @@ export default function ProjectDetailsPage() {
             viewport={{ once: true }}
           >
             <h2 className="text-4xl sm:text-6xl font-black mb-8">Ready to Start Your Project?</h2>
-            <p className="text-xl mb-12 max-w-3xl mx-auto">
+            <p className="text-xl mb-12 max-w-3xl mx-auto text-gray-300">
               Let's create something amazing together and bring your vision to life.
             </p>
             <motion.div 
@@ -350,7 +381,7 @@ export default function ProjectDetailsPage() {
             >
               <Button
                 size="lg"
-                className="bg-white text-yellow-600 hover:bg-gray-100 px-10 py-6 text-lg font-semibold rounded-full"
+                className="bg-white text-black hover:bg-gray-100 px-10 py-6 text-lg font-semibold rounded-full"
               >
                 Start Your Project
               </Button>
@@ -358,7 +389,7 @@ export default function ProjectDetailsPage() {
                 <Button
                   variant="outline"
                   size="lg"
-                  className="border-2 border-white text-black hover:bg-white hover:text-yellow-600 px-10 py-6 text-lg font-semibold rounded-full"
+                  className="border-2 border-white text-black hover:bg-white hover:text-black px-10 py-6 text-lg font-semibold rounded-full"
                 >
                   View All Projects
                 </Button>
